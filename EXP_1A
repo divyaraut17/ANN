@@ -1,0 +1,30 @@
+def spam_filter(email_features, weights, bias, threshold):
+
+    weighted_sum = 0
+    for i in range(len(email_features)):
+        weighted_sum += email_features[i] * weights[i]
+
+    # Add the bias
+    weighted_sum += bias
+
+    # Apply the step activation function
+    if weighted_sum > threshold:
+        return 1  # Spam
+    else:
+        return 0  # Not Spam
+
+
+
+email_features = [3, 1, 0.4]  # Example email features: [3 spam keywords, 1 suspicious link, 0.4 sender reputation]
+weights = [0.7, 1.0, -0.5]    # Weights for each feature
+bias = -1.0                   # Bias term
+threshold = 0                 # Threshold for spam classification
+
+# Get the prediction (1 = Spam, 0 = Not Spam)
+output = spam_filter(email_features, weights, bias, threshold)
+
+# Output
+if output == 1:
+    print("This email is Spam.")
+else:
+    print("This email is Not Spam.")
